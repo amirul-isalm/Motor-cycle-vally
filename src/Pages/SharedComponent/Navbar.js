@@ -157,7 +157,7 @@ const Navbar = () => {
                 <Button veriant="outlined">
                   <Link
                     style={{ textDecoration: "none", color: "white" }}
-                    to="/explore"
+                    to="/dashboard"
                   >
                     Dashboard
                   </Link>

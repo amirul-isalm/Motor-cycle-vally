@@ -7,6 +7,7 @@ import LoginPage from "./Pages/Login&Registresion/LoginPage";
 import RegisterPage from "./Pages/Login&Registresion/RegisterPage";
 import AuthProvider from "./Pages/Context/AuthProvider";
 import PrivetRoute from "./Pages/PrivetRouteAndAdminRoute/PrivetRoute";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
             </Route>
             <PrivetRoute path="/purcess/:id">
               <PurcessComponent></PurcessComponent>
+            </PrivetRoute>
+            <PrivetRoute path="/dashboard">
+              <Dashboard></Dashboard>
             </PrivetRoute>
             <Route path="/login">
               <LoginPage></LoginPage>

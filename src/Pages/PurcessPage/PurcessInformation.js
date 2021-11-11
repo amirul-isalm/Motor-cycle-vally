@@ -7,7 +7,7 @@ import useAuth from "../Context/useAuth";
 
 const PurcessInformation = ({  cycle }) => {
   const {user}=useAuth()
-  const { priec, name, photo } = cycle;
+  const { priec, name, photo, engine } = cycle;
   
   const [buyerInformation, setBuyerInformation] = React.useState({ })
   
@@ -20,7 +20,10 @@ const PurcessInformation = ({  cycle }) => {
       Buyeremail: user.email,
       BiekName: name,
       Price: priec,
-      photo:photo
+      photo: photo,
+      status: "Pending",
+      Engine: engine
+      
     };
     newInformaiton[inputName] = inputValue
     setBuyerInformation(newInformaiton)
