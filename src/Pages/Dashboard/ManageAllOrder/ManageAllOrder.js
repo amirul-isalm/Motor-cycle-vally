@@ -17,7 +17,7 @@ const ManageAllOrder = () => {
     <Box>
       <Typography variant="h5">
         {" "}
-        Your total purcessed Bike: {bikes?.length}{" "}
+        Total Orderd Bike: {bikes?.length}{" "}
       </Typography>
       <Grid sx={{ mt: 5, pt: 5 }} container spacing={{ xs: 1 }}>
         {bikes?.map((bike) => (

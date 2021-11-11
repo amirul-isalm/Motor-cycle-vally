@@ -16,19 +16,25 @@ const [openStutusModal, setOpenStatusModal] = React.useState(false);
 const handleOpen = () => setOpenStatusModal(true);
 const handleClose = () => setOpenStatusModal(false);
 
-  const handelCancelOrder = (id) => {
-    fetch(`http://localhost:5000/orderdBiek/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount) {
-          alert("Delete successfully");
-          const remaing = bikes?.filter((bk) => bk._id !== id);
-          setBikes(remaing);
-        }
-      });
+    const handelCancelOrder = (id) => {
+      const confirm = window.confirm(
+        `Are You Sure,  Want To  Cancel This Order`
+      );
+      if (confirm) {
+        fetch(`http://localhost:5000/orderdBiek/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              alert("Delete successfully");
+              const remaing = bikes?.filter((bk) => bk._id !== id);
+              setBikes(remaing);
+            }
+          });
+      }
     };
+    
     
 
 

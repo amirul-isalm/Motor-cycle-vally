@@ -30,6 +30,8 @@ import Payment from "./Payment";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import MyPurcessed from "./MyPurcess/MyPurcessed";
 import ManageAllOrder from "./ManageAllOrder/ManageAllOrder";
+import AddANewProduct from "./AddANewProduct/AddANewProduct";
+import ReviewPage from "./ReviewPage/ReviewPage";
 const drawerWidth = 240;
 
 function Dashboard(props) {
@@ -83,7 +85,7 @@ function Dashboard(props) {
           <RateReviewIcon sx={{ mx: 2 }} />
           <Link
             style={{ textDecoration: "none", color: "purple" }}
-            to="/explore"
+            to={`${url}/review`}
           >
             {"  "} Review
           </Link>
@@ -101,9 +103,9 @@ function Dashboard(props) {
           <AddBoxIcon sx={{ mx: 2 }} />
           <Link
             style={{ textDecoration: "none", color: "purple" }}
-            to="/explore"
+            to={`${url}/addAProduct`}
           >
-            {"  "} Add A Product
+            {"  "} Add A New Product
           </Link>
         </ListItem>
         <ListItem button>
@@ -226,6 +228,12 @@ function Dashboard(props) {
           </Route>
           <Route path={`${path}/manageAllOrder`}>
             <ManageAllOrder />
+          </Route>
+          <Route path={`${path}/review`}>
+            <ReviewPage />
+          </Route>
+          <Route path={`${path}/addAProduct`}>
+            <AddANewProduct />
           </Route>
         </Switch>
       </Box>
