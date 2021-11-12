@@ -17,7 +17,7 @@ const ManageProductCart = ({ cycle, setBikes, bikes, setSuccess }) => {
   const clickDeleteButton = (id) => {
     const confirm = window.confirm(`Are You Sure,  Want To  Cancel This Order`);
     if (confirm) {
-      fetch(`http://localhost:5000/bikeCollection/${id}`, {
+      fetch(`https://motorcycle-vally-000.herokuapp.com/bikeCollection/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -37,7 +37,7 @@ const ManageProductCart = ({ cycle, setBikes, bikes, setSuccess }) => {
         <Typography gutterBottom variant="h6" component="div">
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        
           <Grid
             container
             spacing={{ xs: 2, md: 3 }}
@@ -59,7 +59,7 @@ const ManageProductCart = ({ cycle, setBikes, bikes, setSuccess }) => {
               {about.slice(0, 135)}
             </Grid>
           </Grid>
-        </Typography>
+        
       </CardContent>
       <CardActions>
         <Grid container columns={{ xs: 12, sm: 12, md: 12 }}>
@@ -75,7 +75,7 @@ const ManageProductCart = ({ cycle, setBikes, bikes, setSuccess }) => {
           <Grid item xs={6} md={6}>
             {" "}
             <Button
-              onClick={() => clickDeleteButton()}
+              onClick={() => clickDeleteButton(_id)}
               style={{ marginLeft: "8px" }}
               variant="contained"
             >

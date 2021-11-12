@@ -35,7 +35,7 @@ const ReviewPage = () => {
   const handelSubmit = (e) => {
     e.preventDefault();
     console.log(feedback);
-      axios.post("http://localhost:5000/addReview", { feedback })
+      axios.post("https://motorcycle-vally-000.herokuapp.com/addReview", { feedback })
           .then((res) => {
         if (res.data.insertedId) {
           alert("Successfully Added  A Feedback");

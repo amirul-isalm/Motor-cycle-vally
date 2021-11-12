@@ -40,7 +40,7 @@ const UpdateProductModal = ({
 
     const confirm = window.confirm(`Are You Sure,  Want To  Update price?`);
     if (confirm) {
-      fetch("http://localhost:5000/updatePrice", {
+      fetch("https://motorcycle-vally-000.herokuapp.com/updatePrice", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -9,7 +9,7 @@ const MyPurcessed = () => {
 
   const { user } = useAuth();
   useEffect(() => {
-    const url = `http://localhost:5000/orderdBiek?email=${user?.email}`;
+    const url = `https://motorcycle-vally-000.herokuapp.com/orderdBiek?email=${user?.email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBikes(data));

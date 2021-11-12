@@ -1,10 +1,8 @@
 import {
   Button,
-  Card,
-  CardContent,
-  CardMedia,
+ 
   Grid,
-  IconButton,
+
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -18,7 +16,7 @@ const ManageBikeCart = ({ bike, setBikes, bikes }) => {
   const handelCancelOrder = (id) => {
     const confirm = window.confirm(`Are You Sure,  Want To  Cancel This Order`);
     if (confirm) {
-      fetch(`http://localhost:5000/orderdBiek/${id}`, {
+      fetch(`https://motorcycle-vally-000.herokuapp.com/orderdBiek/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

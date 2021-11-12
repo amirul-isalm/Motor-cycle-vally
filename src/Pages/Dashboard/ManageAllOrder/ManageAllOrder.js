@@ -9,7 +9,7 @@ const ManageAllOrder = () => {
 
   const { token } = useAuth();
   useEffect(() => {
-    const url = `http://localhost:5000/allorderdBieks`;
+    const url = `https://motorcycle-vally-000.herokuapp.com/allorderdBieks`;
     fetch(url, {
       headers: {
         authorizetion: `Bearer ${token}`,

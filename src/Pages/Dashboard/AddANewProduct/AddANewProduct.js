@@ -21,7 +21,7 @@ const AddANewProduct = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/addABike", { newBike })
+      .post("https://motorcycle-vally-000.herokuapp.com/addABike", { newBike })
 
       .then((res) => {
         if (res.data.insertedId) {

@@ -21,7 +21,7 @@ const ChangeStatusModal = ({ openStutusModal, handleClose, bike }) => {
      );
       if (confirm) {
           
-    fetch("http://localhost:5000/orderbike", {
+    fetch("https://motorcycle-vally-000.herokuapp.com/orderbike", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

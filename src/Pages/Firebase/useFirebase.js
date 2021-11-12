@@ -128,7 +128,7 @@ const useFirebase = () => {
   const updataAndSaveUser = (email, displayName, mathod) => {
     const user = { email: email, displayName: displayName };
     console.log(user);
-    fetch("http://localhost:5000/users", {
+    fetch("https://motorcycle-vally-000.herokuapp.com/users", {
       method: mathod,
       headers: {
         "Content-Type": "application/json",
@@ -146,7 +146,7 @@ const useFirebase = () => {
   // check admin
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`https://motorcycle-vally-000.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);

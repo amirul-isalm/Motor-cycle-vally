@@ -10,7 +10,7 @@ const PurcessSection = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/motorcycels/${id}`)
+    fetch(`https://motorcycle-vally-000.herokuapp.com/motorcycels/${id}`)
       .then((res) => res.json())
       .then((data) => setCycle(data));
   }, [id]);

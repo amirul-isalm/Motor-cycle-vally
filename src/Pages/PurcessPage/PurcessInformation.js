@@ -32,7 +32,7 @@ const PurcessInformation = ({ cycle }) => {
     console.log(buyerInformation);
     // send buyer  data in database
 
-    fetch("http://localhost:5000/orderdBiek", {
+    fetch("https://motorcycle-vally-000.herokuapp.com/orderdBiek", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

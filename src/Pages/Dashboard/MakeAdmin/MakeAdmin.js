@@ -19,7 +19,7 @@ const {token}=useAuth()
       const confirm = window.confirm(`Are you sure add ${email} as a admin?`)
       if (confirm) {
 
-          fetch("http://localhost:5000/users/admin", {
+          fetch("https://motorcycle-vally-000.herokuapp.com/users/admin", {
               method: "PUT",
               headers: {
                   authorizetion: `Bearer ${token}`,

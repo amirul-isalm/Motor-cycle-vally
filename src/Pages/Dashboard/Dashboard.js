@@ -43,14 +43,16 @@ function Dashboard(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  console.log(admin);
+  
   const drawer = (
     <div>
-      <img
-        style={{ width: "150px", marginTop: "9px" }}
-        src="https://i.ibb.co/Q943xHL/logo.png"
-        alt=" "
-      />
+      
+        <img
+          style={{ width: "140px", marginTop: "9px" }}
+          src="https://i.ibb.co/Q943xHL/logo.png"
+          alt=" "
+        />
+    
       <Divider />
       <List>
         <ListItem>
