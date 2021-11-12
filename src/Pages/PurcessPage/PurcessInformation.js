@@ -5,13 +5,13 @@ import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import useAuth from "../Context/useAuth";
 
-const PurcessInformation = ({  cycle }) => {
-  const {user}=useAuth()
+const PurcessInformation = ({ cycle }) => {
+  const { user } = useAuth();
   const { priec, name, photo, engine } = cycle;
-  
-  const [buyerInformation, setBuyerInformation] = React.useState({ })
-  
-  const handelBlure = e => {
+
+  const [buyerInformation, setBuyerInformation] = React.useState({});
+
+  const handelBlure = (e) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
     const newInformaiton = {
@@ -22,20 +22,16 @@ const PurcessInformation = ({  cycle }) => {
       Price: priec,
       photo: photo,
       status: "Pending",
-      Engine: engine
-      
+      Engine: engine,
     };
-    newInformaiton[inputName] = inputValue
-    setBuyerInformation(newInformaiton)
-  
+    newInformaiton[inputName] = inputValue;
+    setBuyerInformation(newInformaiton);
+  };
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    console.log(buyerInformation);
+    // send buyer  data in database
 
-  
-  }
-  const handelSubmit = e => {
-    e.preventDefault()
-    console.log(buyerInformation)
-// send buyer  data in database 
-    
     fetch("http://localhost:5000/orderdBiek", {
       method: "POST",
       headers: {
@@ -46,13 +42,11 @@ const PurcessInformation = ({  cycle }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          alert("purcess successfully")
+          alert("purcess successfully");
+          e.target.reset();
         }
       });
-
-
-    
-  }
+  };
   return (
     <Box
       sx={{
@@ -73,7 +67,7 @@ const PurcessInformation = ({  cycle }) => {
           style={{ width: "95%" }}
           label="Your Email"
           type="email"
-          value={user?.email|| ""}
+          value={user?.email || ""}
           InputProps={{
             readOnly: true,
           }}

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import useAuth from "../../Context/useAuth";
 
 const ReviewPage = () => {
@@ -16,6 +16,7 @@ const ReviewPage = () => {
   const [feedback, setFeedback] = useState({});
   const [rating, setRating] = React.useState(3);
   console.log(rating);
+  
 
   const handelBlur = (e) => {
     const name = e.target.name;
@@ -26,6 +27,7 @@ const ReviewPage = () => {
       name: user.displayName,
       email: user.email,
       photo: user.photoURL,
+      date:new Date().toLocaleDateString()
     };
     updateFeedbadk[name] = value;
     setFeedback(updateFeedbadk);
@@ -36,7 +38,8 @@ const ReviewPage = () => {
       axios.post("http://localhost:5000/addReview", { feedback })
           .then((res) => {
         if (res.data.insertedId) {
-          alert("Successfully Added  A Product");
+          alert("Successfully Added  A Feedback");
+         e.target.reset();
         }
       });
   };
@@ -115,6 +118,7 @@ const ReviewPage = () => {
             multiline
             rows={5}
             onBlur={handelBlur}
+          
           />
         </Grid>
 

@@ -1,10 +1,12 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Alert, Button, Grid, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import React, { useState } from "react";
 
 const AddANewProduct = () => {
   const [newBike, setNewBike] = useState({});
+  const [addSuccessfully, setAddSuccessfully] = useState(false);
+
   const handelBlur = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -15,6 +17,7 @@ const AddANewProduct = () => {
   };
 
   const handelSubmit = (e) => {
+    
     e.preventDefault();
 
     axios
@@ -23,6 +26,9 @@ const AddANewProduct = () => {
       .then((res) => {
         if (res.data.insertedId) {
           alert("Successfully Added  A Product");
+          e.target.reset();
+          setAddSuccessfully(true)
+
         }
       });
   };
@@ -43,6 +49,12 @@ const AddANewProduct = () => {
         Add A New Bike For Your Collection.
         <hr />
       </Typography>
+
+      {addSuccessfully&&
+        <Alert onClose={() => {setAddSuccessfully(false)}}>
+        Successfully Add A New Bike..
+        </Alert>
+      }
       <form onSubmit={handelSubmit}>
         <TextField
           required

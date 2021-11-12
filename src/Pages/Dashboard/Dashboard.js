@@ -14,7 +14,7 @@ import {
   Switch,
   Route,
   Link,
-  useParams,
+ 
   useRouteMatch,
 } from "react-router-dom";
 import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
@@ -32,9 +32,14 @@ import MyPurcessed from "./MyPurcess/MyPurcessed";
 import ManageAllOrder from "./ManageAllOrder/ManageAllOrder";
 import AddANewProduct from "./AddANewProduct/AddANewProduct";
 import ReviewPage from "./ReviewPage/ReviewPage";
-const drawerWidth = 240;
+import ManageProduct from "./ManageProduct/ManageProduct";
+import MakeAdmin from "./MakeAdmin/MakeAdmin";
+import useAuth from "../Context/useAuth";
+import {Button } from "@mui/material";
+const drawerWidth = 260;
 
 function Dashboard(props) {
+  const {logOut,user}=useAuth()
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
@@ -45,95 +50,124 @@ function Dashboard(props) {
 
   const drawer = (
     <div>
-      <Toolbar />
+      <img
+        style={{ width: "150px", marginTop: "9px" }}
+        src="https://i.ibb.co/Q943xHL/logo.png"
+        alt=" "
+      />
       <Divider />
       <List>
-        <ListItem button>
-          <HomeSharpIcon sx={{ mx: 2 }} />
-          <Link style={{ textDecoration: "none", color: "purple" }} to="/">
-            {"  "} Home
-          </Link>
+        <ListItem>
+          <Button>
+            <HomeSharpIcon sx={{ mx: 1 }} />
+            <Link style={{ textDecoration: "none", color: "purple" }} to="/">
+              Home
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <TwoWheelerIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to="/explore"
-          >
-            {"  "} Explore
-          </Link>
+        <ListItem>
+          <Button>
+            <TwoWheelerIcon sx={{ mx: 1 }} />
+            <Link
+              style={{ textDecoration: "none", color: "purple" }}
+              to="/explore"
+            >
+              Explore
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <PaymentsIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to={`${url}/payment`}
-          >
-            Payment
-          </Link>
+        <ListItem>
+          <Button>
+            <PaymentsIcon sx={{ mx: 1 }} />
+            <Link
+              style={{ textDecoration: "none", color: "purple" }}
+              to={`${url}/payment`}
+            >
+              Payment
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <ShoppingCartIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to={`${url}/mypurcessed`}
-          >
-            {"  "} My Purcessed
-          </Link>
+        <ListItem>
+          <Button>
+            <ShoppingCartIcon sx={{ mx: 1 }} />
+            <Link
+              style={{ textDecoration: "none", color: "purple" }}
+              to={`${url}/mypurcessed`}
+            >
+              My Purcessed
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <RateReviewIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to={`${url}/review`}
-          >
-            {"  "} Review
-          </Link>
+        <ListItem>
+          <Button>
+            <RateReviewIcon sx={{ mx: 1 }} />
+            <Link
+              style={{ textDecoration: "none", color: "purple" }}
+              to={`${url}/review`}
+            >
+              Review
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <BallotIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to={`${url}/manageAllOrder`}
-          >
-            {"  "} Manage All Orders
-          </Link>
+        <ListItem>
+          <Button>
+            <BallotIcon sx={{ mx: 1 }} />
+            <Link
+              style={{ textDecoration: "none", color: "purple" }}
+              to={`${url}/manageAllOrder`}
+            >
+              Manage All Orders
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <AddBoxIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to={`${url}/addAProduct`}
-          >
-            {"  "} Add A New Product
-          </Link>
+        <ListItem>
+          <Button>
+            <AddBoxIcon sx={{ mx: 1 }} />
+            <Link
+              style={{ textDecoration: "none", color: "purple" }}
+              to={`${url}/addAProduct`}
+            >
+              Add A New Product
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <AdminPanelSettingsIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to="/explore"
-          >
-            {"  "} Make Admin
-          </Link>
+        <ListItem>
+          <Button>
+            <AdminPanelSettingsIcon sx={{ mx: 1 }} />
+            <Link
+              style={{ textDecoration: "none", color: "purple" }}
+              to={`${url}/makeAdmin`}
+            >
+              Make Admin
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <BreakfastDiningSharpIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to="/explore"
-          >
-            {"  "} Manage Products
-          </Link>
+        <ListItem>
+          <Button>
+            <BreakfastDiningSharpIcon sx={{ mx: 1 }} />
+            <Link
+              style={{ textDecoration: "none", color: "purple" }}
+              to={`${url}/manageProduct`}
+            >
+              Manage Products
+            </Link>
+          </Button>
         </ListItem>
-        <ListItem button>
-          <LogoutIcon sx={{ mx: 2 }} />
-          <Link
-            style={{ textDecoration: "none", color: "purple" }}
-            to="/explore"
-          >
-            {"  "} Log Out
-          </Link>
+        <ListItem>
+          <Button onClick={logOut}>
+            <LogoutIcon sx={{ mx: 1 }} /> Log Out
+          </Button>
+        </ListItem>
+        <ListItem>
+          <Button>
+            <img
+              style={{ width: "40px", borderRadius: "50%", marginRight: "5px" }}
+              src={user.photoURL}
+              alt=" "
+            />
+
+            {user.displayName}
+          </Button>
         </ListItem>
       </List>
     </div>
@@ -163,8 +197,9 @@ function Dashboard(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Dashboard{" "}
+            Dashboard
           </Typography>
+          
         </Toolbar>
       </AppBar>
       <Box
@@ -234,6 +269,12 @@ function Dashboard(props) {
           </Route>
           <Route path={`${path}/addAProduct`}>
             <AddANewProduct />
+          </Route>
+          <Route path={`${path}/manageProduct`}>
+            <ManageProduct />
+          </Route>
+          <Route path={`${path}/makeAdmin`}>
+            <MakeAdmin />
           </Route>
         </Switch>
       </Box>
