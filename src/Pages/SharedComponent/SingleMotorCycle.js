@@ -26,10 +26,10 @@ const SingleMotorCycle = ({ cycle }) => {
         <Typography gutterBottom variant="h6" component="div">
           {name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        
           <Grid
             container
-            spacing={{ xs: 2, md: 3 }}
+            spacing={{ xs: 1, md: 1 }}
             
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
@@ -49,7 +49,7 @@ const SingleMotorCycle = ({ cycle }) => {
               {about.slice(0, 135)}
             </Grid>
           </Grid>
-        </Typography>
+       
       </CardContent>
       <CardActions>
         <Button onClick={()=>clickPurcessButton(_id)} style={{marginLeft:"8px"}} variant="outlined">

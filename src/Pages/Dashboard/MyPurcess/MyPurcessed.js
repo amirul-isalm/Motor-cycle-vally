@@ -13,7 +13,7 @@ const MyPurcessed = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBikes(data));
-  }, []);
+  }, [user]);
 
   return (
     <Box >

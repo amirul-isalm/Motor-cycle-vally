@@ -9,7 +9,7 @@ const Register = () => {
   const [registerData, setRegisterData] = useState({});
   const history = useHistory()
   const location=useLocation()
-  const { createAccountUsingEmailPass, error, loginSuccess,setError,user} = useAuth();
+  const { createAccountUsingEmailPass, error, loginSuccess,setError} = useAuth();
  
   const handelBlure = (e) => {
     const name = e.target.name;

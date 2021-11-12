@@ -10,13 +10,7 @@ import ListItem from "@mui/material/ListItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import {
-  Switch,
-  Route,
-  Link,
- 
-  useRouteMatch,
-} from "react-router-dom";
+import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
 import LogoutIcon from "@mui/icons-material/Logout";
 import RateReviewIcon from "@mui/icons-material/RateReview";
@@ -35,11 +29,12 @@ import ReviewPage from "./ReviewPage/ReviewPage";
 import ManageProduct from "./ManageProduct/ManageProduct";
 import MakeAdmin from "./MakeAdmin/MakeAdmin";
 import useAuth from "../Context/useAuth";
-import {Button } from "@mui/material";
+import { Button } from "@mui/material";
+import AdminRoute from "../PrivetRouteAndAdminRoute/AdminRoute";
 const drawerWidth = 260;
 
 function Dashboard(props) {
-  const {logOut,user}=useAuth()
+  const { logOut, user, admin } = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   let { path, url } = useRouteMatch();
@@ -48,6 +43,7 @@ function Dashboard(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  console.log(admin);
   const drawer = (
     <div>
       <img
@@ -76,83 +72,91 @@ function Dashboard(props) {
             </Link>
           </Button>
         </ListItem>
-        <ListItem>
-          <Button>
-            <PaymentsIcon sx={{ mx: 1 }} />
-            <Link
-              style={{ textDecoration: "none", color: "purple" }}
-              to={`${url}/payment`}
-            >
-              Payment
-            </Link>
-          </Button>
-        </ListItem>
-        <ListItem>
-          <Button>
-            <ShoppingCartIcon sx={{ mx: 1 }} />
-            <Link
-              style={{ textDecoration: "none", color: "purple" }}
-              to={`${url}/mypurcessed`}
-            >
-              My Purcessed
-            </Link>
-          </Button>
-        </ListItem>
-        <ListItem>
-          <Button>
-            <RateReviewIcon sx={{ mx: 1 }} />
-            <Link
-              style={{ textDecoration: "none", color: "purple" }}
-              to={`${url}/review`}
-            >
-              Review
-            </Link>
-          </Button>
-        </ListItem>
-        <ListItem>
-          <Button>
-            <BallotIcon sx={{ mx: 1 }} />
-            <Link
-              style={{ textDecoration: "none", color: "purple" }}
-              to={`${url}/manageAllOrder`}
-            >
-              Manage All Orders
-            </Link>
-          </Button>
-        </ListItem>
-        <ListItem>
-          <Button>
-            <AddBoxIcon sx={{ mx: 1 }} />
-            <Link
-              style={{ textDecoration: "none", color: "purple" }}
-              to={`${url}/addAProduct`}
-            >
-              Add A New Product
-            </Link>
-          </Button>
-        </ListItem>
-        <ListItem>
-          <Button>
-            <AdminPanelSettingsIcon sx={{ mx: 1 }} />
-            <Link
-              style={{ textDecoration: "none", color: "purple" }}
-              to={`${url}/makeAdmin`}
-            >
-              Make Admin
-            </Link>
-          </Button>
-        </ListItem>
-        <ListItem>
-          <Button>
-            <BreakfastDiningSharpIcon sx={{ mx: 1 }} />
-            <Link
-              style={{ textDecoration: "none", color: "purple" }}
-              to={`${url}/manageProduct`}
-            >
-              Manage Products
-            </Link>
-          </Button>
-        </ListItem>
+        {!admin ? (
+          <>
+            {" "}
+            <ListItem>
+              <Button>
+                <PaymentsIcon sx={{ mx: 1 }} />
+                <Link
+                  style={{ textDecoration: "none", color: "purple" }}
+                  to={`${url}/payment`}
+                >
+                  Payment
+                </Link>
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button>
+                <ShoppingCartIcon sx={{ mx: 1 }} />
+                <Link
+                  style={{ textDecoration: "none", color: "purple" }}
+                  to={`${url}/mypurcessed`}
+                >
+                  My Purcessed
+                </Link>
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button>
+                <RateReviewIcon sx={{ mx: 1 }} />
+                <Link
+                  style={{ textDecoration: "none", color: "purple" }}
+                  to={`${url}/review`}
+                >
+                  Review
+                </Link>
+              </Button>
+            </ListItem>
+          </>
+        ) : (
+          <>
+            <ListItem>
+              <Button>
+                <BallotIcon sx={{ mx: 1 }} />
+                <Link
+                  style={{ textDecoration: "none", color: "purple" }}
+                  to={`${url}/manageAllOrder`}
+                >
+                  Manage All Orders
+                </Link>
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button>
+                <AddBoxIcon sx={{ mx: 1 }} />
+                <Link
+                  style={{ textDecoration: "none", color: "purple" }}
+                  to={`${url}/addAProduct`}
+                >
+                  Add A New Product
+                </Link>
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button>
+                <AdminPanelSettingsIcon sx={{ mx: 1 }} />
+                <Link
+                  style={{ textDecoration: "none", color: "purple" }}
+                  to={`${url}/makeAdmin`}
+                >
+                  Make Admin
+                </Link>
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button>
+                <BreakfastDiningSharpIcon sx={{ mx: 1 }} />
+                <Link
+                  style={{ textDecoration: "none", color: "purple" }}
+                  to={`${url}/manageProduct`}
+                >
+                  Manage Products
+                </Link>
+              </Button>
+            </ListItem>
+          </>
+        )}
         <ListItem>
           <Button onClick={logOut}>
             <LogoutIcon sx={{ mx: 1 }} /> Log Out
@@ -199,7 +203,6 @@ function Dashboard(props) {
           <Typography variant="h6" noWrap component="div">
             Dashboard
           </Typography>
-          
         </Toolbar>
       </AppBar>
       <Box
@@ -251,31 +254,36 @@ function Dashboard(props) {
         <Toolbar />
 
         <Switch>
-          <Route exact path={path}>
-            <MyPurcessed />
-          </Route>
-
+          {admin ? (
+            <AdminRoute exact path={path}>
+              <ManageAllOrder />
+            </AdminRoute>
+          ) : (
+            <Route exact path={path}>
+              <MyPurcessed />
+            </Route>
+          )}
           <Route path={`${path}/mypurcessed`}>
             <MyPurcessed />
           </Route>
           <Route path={`${path}/payment`}>
             <Payment />
           </Route>
-          <Route path={`${path}/manageAllOrder`}>
+          <AdminRoute path={`${path}/manageAllOrder`}>
             <ManageAllOrder />
-          </Route>
+          </AdminRoute>
           <Route path={`${path}/review`}>
             <ReviewPage />
           </Route>
-          <Route path={`${path}/addAProduct`}>
+          <AdminRoute path={`${path}/addAProduct`}>
             <AddANewProduct />
-          </Route>
-          <Route path={`${path}/manageProduct`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/manageProduct`}>
             <ManageProduct />
-          </Route>
-          <Route path={`${path}/makeAdmin`}>
+          </AdminRoute>
+          <AdminRoute path={`${path}/makeAdmin`}>
             <MakeAdmin />
-          </Route>
+          </AdminRoute>
         </Switch>
       </Box>
     </Box>

@@ -14,7 +14,7 @@ const PurcessSection = () => {
       .then((res) => res.json())
       .then((data) => setCycle(data));
   }, [id]);
-  const { photo, priec, engine, name, mileage, fuelTank, about, _id } = cycle;
+  const { photo, priec, engine, name, mileage, fuelTank, about } = cycle;
 
   return (
     <Container>

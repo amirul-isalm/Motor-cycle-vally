@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material';
-import { Box, height } from '@mui/system';
+import { Box } from '@mui/system';
 import React from 'react';
 import banner from "./images/banner.jpg"
 import Button from "@mui/material/Button";

@@ -16,16 +16,17 @@ import {
 firebaseinit();
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [loginSuccess, setLoginsuccess] = useState(false);
-  const [isLoading,setIsLoading]=useState(true)
+  const [admin,setAdmin]=useState(false)
+  const [isLoading, setIsLoading] = useState(true);
   const auth = getAuth();
   const GoogleProvider = new GoogleAuthProvider();
 
   // ------------------email password login---------------------
   // register
   const createAccountUsingEmailPass = (email, password, name, history) => {
-    isLoading(true)
+   setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         setUser(result.user);
@@ -34,13 +35,13 @@ const useFirebase = () => {
         updateInformation(name);
         console.log(result.user);
         setError("");
-        isLoading(false)
+        isLoading(false);
       })
       .catch((error) => {
         setError(error.message);
         setLoginsuccess(false);
       })
-    .finally(()=>setIsLoading(false))
+      .finally(() => setIsLoading(false));
   };
   // login
   const loginUsingEmailPass = (email, password, history, location) => {
@@ -49,10 +50,10 @@ const useFirebase = () => {
         setUser(result.user);
         setLoginsuccess(true);
         setIsLoading(false);
-        
+
         const destination = location?.state?.from || "/";
         history.push(destination);
-        
+
         setError("");
       })
       .catch((error) => {
@@ -61,7 +62,6 @@ const useFirebase = () => {
         setLoginsuccess(false);
       })
       .finally(() => setIsLoading(false));
-
   };
   // update name
   const updateInformation = (name) => {
@@ -82,26 +82,26 @@ const useFirebase = () => {
       .catch((error) => {
         setError(error.message);
       })
-    .finally(()=>setIsLoading(false))
+      .finally(() => setIsLoading(false));
   };
 
   // with google
   const loginWithGoogle = (history, location) => {
-    setIsLoading(true)
+    setIsLoading(true);
     signInWithPopup(auth, GoogleProvider)
       .then((result) => {
         setUser(result.user);
-        setIsLoading(false)
+        setIsLoading(false);
         updataAndSaveUser(result.user.email, result.user.displayName, "PUT");
         const destination = location?.state?.from || "/";
         history.push(destination);
         setError("");
-        console.log(result.user)
+        console.log(result.user);
       })
       .catch((error) => {
         setError(error.message);
       })
-    .finally(()=>setIsLoading(false))
+      .finally(() => setIsLoading(false));
   };
 
   // update all auth
@@ -113,7 +113,7 @@ const useFirebase = () => {
       } else {
         setUser({});
       }
-      setIsLoading(false)
+      setIsLoading(false);
     });
     return () => unSubscribed;
   }, []);
@@ -138,12 +138,21 @@ const useFirebase = () => {
       });
   };
 
+  // check admin
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.admin));
+  }, [user.email]);
+
   return {
     user,
     error,
     loginSuccess,
     isLoading,
     setError,
+    admin, 
     createAccountUsingEmailPass,
     loginUsingEmailPass,
     logOut,

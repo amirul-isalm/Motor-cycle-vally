@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,15 +15,13 @@ import { Link } from "react-router-dom";
 import useAuth from "../Context/useAuth";
 
 const Navbar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+ 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const { user, logOut } = useAuth();
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+ 
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
