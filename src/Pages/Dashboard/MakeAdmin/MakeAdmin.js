@@ -1,8 +1,11 @@
 import { Alert, Button, Grid, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import useAuth from "../../Context/useAuth";
 
 const MakeAdmin = () => {
+const {token}=useAuth()
+
     const [email, setEmail] = useState("");
     const [success,setSuccess]=useState(false)
   const handelBlur = (e) => {
@@ -19,7 +22,7 @@ const MakeAdmin = () => {
           fetch("http://localhost:5000/users/admin", {
               method: "PUT",
               headers: {
-                  // authorizetion: `Bearer ${token}`,
+                  authorizetion: `Bearer ${token}`,
                   "Content-Type": "application/json",
               },
               body: JSON.stringify(user),
@@ -28,7 +31,11 @@ const MakeAdmin = () => {
               .then((data) => {
                   if (data.modifiedCount) {
                        setSuccess(true)
-                   }
+                }
+                if (data.modifiedCount === 0) {
+                  alert("This Email User Already Admin")
+                }
+                
               })
       }
 e.target.reset()

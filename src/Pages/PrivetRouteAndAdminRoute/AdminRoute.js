@@ -9,7 +9,9 @@ const AdminRoute = ({ children, ...rest }) => {
     return <CircularProgress />;
   }
   if (!admin) {
-    return <CircularProgress />;
+
+   return <CircularProgress />;
+    
   }
   return (
     <Route
