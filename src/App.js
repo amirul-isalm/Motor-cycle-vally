@@ -8,6 +8,7 @@ import RegisterPage from "./Pages/Login&Registresion/RegisterPage";
 import AuthProvider from "./Pages/Context/AuthProvider";
 import PrivetRoute from "./Pages/PrivetRouteAndAdminRoute/PrivetRoute";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import NotFoundPage from "./Pages/NotFound/NotFoundPage";
 
 function App() {
   return (
@@ -36,6 +37,12 @@ function App() {
             <Route path="/register">
               <RegisterPage></RegisterPage>
             </Route>
+            <Route path="*">
+              <NotFoundPage></NotFoundPage>
+            </Route>
+
+
+
           </Switch>
         </BrowserRouter>
       </AuthProvider>
